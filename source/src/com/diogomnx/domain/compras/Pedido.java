@@ -11,7 +11,7 @@ public class Pedido {
 
     }
 
-    public double calcularValorTotal(){
+    public double calcularTotal(){
         return 0;
     }
 
