@@ -2,24 +2,15 @@ package com.diogomnx.domain.pessoa;
 
 public abstract class Pessoa {
     private String nome;
-    private String infoContato;
-    private String detalhes;
 
-    public Pessoa(String nome, String infoContato) {
+    public Pessoa(String nome) {
         this.nome = nome;
-        this.infoContato = infoContato;
     }
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
-    }
-    public String getInfoContato() {
-        return infoContato;
-    }
-    public void setInfoContato(String infoContato) {
-        this.infoContato = infoContato;
     }
 }
 

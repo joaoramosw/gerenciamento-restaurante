@@ -1,16 +1,17 @@
 package com.diogomnx.domain.pessoa;
 
-public class Funcionario extends Pessoa {
+import com.diogomnx.domain.compras.ItemCardapio;
+import com.diogomnx.domain.compras.Pedido;
+
+public abstract class Funcionario extends Pessoa {
 
     private String idFuncionario;
 
-    // Construtor
-    public Funcionario(String nome, String infoContato, String idFuncionario) {
-        super(nome, infoContato);
+    public Funcionario(String nome, String idFuncionario) {
+        super(nome);
         this.idFuncionario = idFuncionario;
     }
 
-    // Getter e Setter
     public String getIdFuncionario() {
         return idFuncionario;
     }
@@ -19,9 +20,5 @@ public class Funcionario extends Pessoa {
         this.idFuncionario = idFuncionario;
     }
 
-    // Método para realizar uma tarefa
-    public void realizarTarefa() {
-        System.out.println("Funcionario " + getNome() + " está realizando uma tarefa.");
-    }
-
+    public abstract void executarTarefa();
 }

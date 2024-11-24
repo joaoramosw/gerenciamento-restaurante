@@ -8,11 +8,15 @@ public class Pedido {
     private Double valorTotal;
 
     public void addItem(ItemCardapio item){
-
+        itens.add(item);
     }
 
     public double calcularTotal(){
-        return 0;
+        double total = 0.0;
+        for (ItemCardapio item : itens) {
+            total += item.getPreco();
+        }
+        return total;
     }
 
     public List<ItemCardapio> getItens() {

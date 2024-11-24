@@ -5,6 +5,5 @@ import java.util.Scanner;
 public interface MetodosPagamento {
     void pagarComDinheiro(Scanner input);
     void pagarComCartao(Scanner input);
-    void pagarComCarteiraDigital(Scanner input);
     void pagarComPix(Scanner input);
 }

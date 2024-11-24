@@ -22,10 +22,6 @@ public class Restaurante {
         this.cardapio = new Cardapio();
     }
 
-    public void inicializarSistema() {
-        System.out.println("Sistema do restaurante " + nome + " inicializado.");
-    }
-
     public Cardapio getCardapio() {
         return cardapio;
     }
@@ -48,6 +44,19 @@ public class Restaurante {
 
     public void addFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
+    }
+
+    public Mesa buscarMesaDisponivel(int capacidade) {
+        for (Mesa mesa : mesas) {
+            if (mesa.isDisponivel() && mesa.getCapacidade() >= capacidade) {
+                return mesa;
+            }
+        }
+        return null;
+    }
+
+    public void inicializarSistema() {
+        System.out.println("Sistema do restaurante " + nome + " inicializado.");
     }
 
     @Override
