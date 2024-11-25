@@ -102,20 +102,20 @@ public class Programa {
 
             System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está agora disponível.");
 
-            for (int i = 0; i < 1; i++) {  // Aqui, você pode ajustar o número de clientes a serem registrados
+            for (int i = 0; i < 1; i++) {
                 System.out.print("Digite o nome do cliente: ");
                 nomeCliente = input.next();
 
                 Cliente novoCliente = new Cliente(nomeCliente);
-                restaurante.addCliente(novoCliente);  // Método para adicionar o cliente ao restaurante
+                restaurante.addCliente(novoCliente);
 
                 System.out.println("Cliente " + nomeCliente + " registrado com sucesso.");
 
-                // Aqui, se quiser, você pode adicionar uma condição para continuar ou finalizar
+
                 System.out.println("Mais algum cliente? (s/n)");
                 char resposta = input.next().charAt(0);
                 if (resposta == 'n') {
-                    break;  // Sai do loop de registro
+                    break;
                 }
             }
 
