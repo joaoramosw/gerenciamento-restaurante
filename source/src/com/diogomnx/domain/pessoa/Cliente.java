@@ -54,8 +54,7 @@ public class Cliente extends Pessoa implements MetodosPagamento {
 
     public void pagarComPix(Scanner input) {
         System.out.println("Gerando chave aleatória...");
-
-        String pix = input.next();
+        input.nextLine();
         System.out.println("Pagamento processado via Pix. Obrigado!");
     }
 }
