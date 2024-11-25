@@ -70,14 +70,14 @@ public class Programa {
                 Reserva reserva = new Reserva(cliente, horarioReserva);
                 mesaDisponivel.reservar(reserva);
                 reserva.confirmar();
-                continuar = false;  // Sai do laço, pois a reserva foi realizada
+                continuar = false;
             } else {
                 System.out.println("Desculpe, não há mesas disponíveis para esse número de pessoas.");
                 System.out.println("Deseja tentar novamente? (s/n)");
-                String resposta = input.next();
-                if (resposta.equalsIgnoreCase("n")) {
+                char resposta = input.next().charAt(0);
+                if (resposta == 'n') {
                     System.out.println("Finalizando programa.");
-                    continuar = false;  // Sai do laço, caso o usuário não queira tentar novamente
+                    continuar = false;
                 }
             }
 
