@@ -41,14 +41,4 @@ public class ItemCardapio {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    // Método sobrescrito toString() para exibir o item como uma string
-    @Override
-    public String toString() {
-        return "ItemCardapio{" +
-                "nome='" + nome + '\'' +
-                ", preco=" + preco +
-                ", categoria='" + categoria + '\'' +
-                '}'; // Retorna uma representação do item no formato de string
-    }
 }

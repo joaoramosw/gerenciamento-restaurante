@@ -17,11 +17,4 @@ public class Cardapio {
     public List<ItemCardapio> getItens() {
         return itens;
     }
-
-    @Override
-    public String toString() {
-        return "Cardapio{" +
-                "itens=" + itens +
-                '}';
-    }
 }

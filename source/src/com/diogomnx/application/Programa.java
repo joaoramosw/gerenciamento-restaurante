@@ -64,12 +64,8 @@ public class Programa {
 
         System.out.println("\nExecutando tarefas dos funcionários:");
         for (Funcionario funcionario : restaurante.getFuncionarios()) {
-            funcionario.executarTarefa();  // Chama o método específico de cada tipo de funcionário
+            funcionario.executarTarefa();
         }
-
-        // =======================
-        // Registro e gerenciamento de clientes
-        // =======================
 
         System.out.println("==================");
 
