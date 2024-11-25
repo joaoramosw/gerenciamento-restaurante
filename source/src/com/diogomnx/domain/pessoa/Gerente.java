@@ -12,6 +12,6 @@ public class Gerente extends Funcionario {
     @Override
     public void executarTarefa() {
         // O gerente executa a tarefa de gerenciar as reservas, imprimindo uma mensagem
-        System.out.println("O gerente " + getNome() + " está gerenciando as reservas...");
+        System.out.println("O gerente está gerenciando as reservas...");
     }
 }

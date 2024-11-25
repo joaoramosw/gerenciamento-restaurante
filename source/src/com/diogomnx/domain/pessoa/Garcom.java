@@ -14,6 +14,6 @@ public class Garcom extends Funcionario {
     @Override
     public void executarTarefa() {
         // O garçom executa a tarefa de atender a mesa, mostrando uma mensagem
-        System.out.println("O garçom " + getNome() + " está atendendo a mesa...");
+        System.out.println("O garçom está atendendo a mesa...");
     }
 }

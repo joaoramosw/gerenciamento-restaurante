@@ -41,6 +41,7 @@ public class Cliente extends Pessoa implements MetodosPagamento {
             }
         }
         pedidos.add(pedido);  // Adiciona o pedido à lista de pedidos do cliente
+
         System.out.println("Pedido finalizado. Total: R$ " + pedido.calcularTotal());  // Exibe o total do pedido
     }
 

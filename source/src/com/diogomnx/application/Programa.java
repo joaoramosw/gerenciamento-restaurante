@@ -1,6 +1,7 @@
 package com.diogomnx.application;
 
 import com.diogomnx.domain.pessoa.Cliente;
+import com.diogomnx.domain.pessoa.Funcionario;
 import com.diogomnx.domain.restaurante.Mesa;
 import com.diogomnx.domain.restaurante.Reserva;
 import com.diogomnx.domain.restaurante.Restaurante;
@@ -62,6 +63,9 @@ public class Programa {
         restaurante.inicializarSistema();
 
         System.out.println("\nExecutando tarefas dos funcionários:");
+        for (Funcionario funcionario : restaurante.getFuncionarios()) {
+            funcionario.executarTarefa();  // Chama o método específico de cada tipo de funcionário
+        }
 
         // =======================
         // Registro e gerenciamento de clientes
