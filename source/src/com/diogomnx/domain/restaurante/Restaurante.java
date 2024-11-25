@@ -1,6 +1,7 @@
 package com.diogomnx.domain.restaurante;
 
 import com.diogomnx.domain.compras.Cardapio;
+import com.diogomnx.domain.pessoa.Cliente;
 import com.diogomnx.domain.pessoa.Funcionario;
 import com.diogomnx.domain.compras.ItemCardapio;
 
@@ -12,6 +13,7 @@ public class Restaurante {
     private String endereco;
     private List<Mesa> mesas;
     private List<Funcionario> funcionarios;
+    private List<Cliente> clientes;
     private Cardapio cardapio;
 
     public Restaurante(String nome, String endereco) {
@@ -44,6 +46,24 @@ public class Restaurante {
 
     public void addFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
+    }
+
+    public void listarFuncionarios() {
+        System.out.println("\n=== Lista de Funcionarios ===");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario.getNome());
+        }
+    }
+
+    public void addCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
+    public void listarClientes() {
+        System.out.println("\n=== Lista de Clientes ===");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.getNome());
+        }
     }
 
     public Mesa buscarMesaDisponivel(int capacidade) {
