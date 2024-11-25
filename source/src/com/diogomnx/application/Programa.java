@@ -2,6 +2,7 @@ package com.diogomnx.application;
 
 import com.diogomnx.domain.compras.ItemCardapio;
 import com.diogomnx.domain.pessoa.Cliente;
+import com.diogomnx.domain.pessoa.Funcionario;
 import com.diogomnx.domain.pessoa.Garcom;
 import com.diogomnx.domain.restaurante.Mesa;
 import com.diogomnx.domain.restaurante.Reserva;
@@ -27,6 +28,8 @@ public class Programa {
             System.out.println("4. Buscar mesa por capacidade");
             System.out.println("5. Adicionar item ao cardapio");
             System.out.println("6. Listar Cardápio");
+            System.out.println("7. Adicionar funcionário");
+            System.out.println("8. Listar funcionários");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
@@ -39,6 +42,7 @@ public class Programa {
                 case 5 -> sistema.adicionarItemCardapio(restaurante, input);
                 case 6 -> sistema.listarCardapio(restaurante);
                 case 7 -> sistema.adicionarFuncionario(input);
+                case 8 -> sistema.listarFuncionarios();
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -48,6 +52,10 @@ public class Programa {
 
         restaurante.inicializarSistema();
 
+        System.out.println("\nExecutando tarefas dos funcionários:");
+
+
+
         System.out.println("==================");
 
         boolean maisClientes = true;
@@ -55,7 +63,6 @@ public class Programa {
             System.out.print("Digite o nome do cliente: ");
             String nomeCliente = input.next();
             Cliente cliente = new Cliente(nomeCliente);
-            Garcom garcom = new Garcom("Pedro", "G01");
 
             boolean continuar = true;
             while (continuar) {
@@ -81,8 +88,6 @@ public class Programa {
                         continuar = false;
                     }
                 }
-
-                garcom.executarTarefa();
 
                 cliente.fazerPedido(restaurante.getCardapio(), input);
 

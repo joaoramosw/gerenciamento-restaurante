@@ -6,6 +6,6 @@ public class Gerente extends Funcionario{
     }
     @Override
     public void executarTarefa() {
-        System.out.println("O gerente "+ super.getNome() +" está gerenciando as reservas...");
+        System.out.println("O gerente "+ getNome() +" está gerenciando as reservas...");
     }
 }

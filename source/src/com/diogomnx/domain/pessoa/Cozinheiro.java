@@ -11,6 +11,6 @@ public class Cozinheiro extends Funcionario{
 
     @Override
     public void executarTarefa() {
-        System.out.println("O cozinheiro "+ super.getNome() +" está preparando o pedido.");
+        System.out.println("O cozinheiro "+ getNome() +" está preparando o pedido.");
     }
 }

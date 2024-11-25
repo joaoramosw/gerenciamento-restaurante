@@ -10,7 +10,7 @@ public class Garcom extends Funcionario{
     }
     @Override
     public void executarTarefa() {
-        System.out.println("O garçom "+ super.getNome() +" está atendendo a mesa...");
+        System.out.println("O garçom "+ getNome() +" está atendendo a mesa...");
 
     }
 }
