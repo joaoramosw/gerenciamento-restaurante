@@ -6,50 +6,48 @@ import com.diogomnx.domain.pessoa.Garcom;
 import com.diogomnx.domain.restaurante.Mesa;
 import com.diogomnx.domain.restaurante.Reserva;
 import com.diogomnx.domain.restaurante.Restaurante;
+import com.diogomnx.domain.restaurante.SistemaRestaurante;
 
 import java.util.Scanner;
 
 public class Programa {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
         Restaurante restaurante = new Restaurante("Snoop Burguer", "Rua 09, 27");
+        SistemaRestaurante sistema = new SistemaRestaurante(restaurante);
 
         System.out.println("Bem vindo ao sistema geral do Snoop Burguer!");
 
-        System.out.println("Adicione mesas ao restaurante (Digite 0 para finalizar):");
-        while (true) {
-            System.out.print("Número da mesa: ");
-            int numeroMesa = input.nextInt();
-            if (numeroMesa == 0) break;
+        int opcao;
+        do {
+            System.out.println("\n=== Sistema Snoop Burguer ===");
+            System.out.println("1. Adicionar mesa");
+            System.out.println("2. Listar mesas");
+            System.out.println("3. Listar mesas ordenadas por capacidade");
+            System.out.println("4. Buscar mesa por capacidade");
+            System.out.println("5. Adicionar item ao cardapio");
+            System.out.println("6. Listar Cardápio");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = input.nextInt();
 
-            System.out.print("Capacidade da mesa: ");
-            int capacidade = input.nextInt();
-
-            restaurante.addMesa(new Mesa(numeroMesa, capacidade));
-        }
-        System.out.println("Adicione itens ao cardápio (Deixe o nome vazio caso queira finalizar o cadastramento de alimentos");
-        while (true) {
-            System.out.print("Nome do item: ");
-            String nome = input.nextLine().trim();
-            if (nome.isEmpty()){
-                System.out.println("Finalizando adição de itens.");
-                break;
+            switch (opcao) {
+                case 1 -> sistema.adicionarMesa(input);
+                case 2 -> sistema.listarMesas();
+                case 3 -> sistema.listarMesasOrdenadas();
+                case 4 -> sistema.buscarMesaPorCapacidade(input);
+                case 5 -> sistema.adicionarItemCardapio(restaurante, input);
+                case 6 -> sistema.listarCardapio(restaurante);
+                case 0 -> System.out.println("Saindo...");
+                default -> System.out.println("Opção inválida. Tente novamente.");
             }
+        } while (opcao != 0);
 
-            System.out.print("Preço do item: ");
-            double preco = input.nextDouble();
-
-            System.out.print("Categoria do item: ");
-            String categoria = input.nextLine();
-            input.nextLine();
-
-            System.out.println("===========");
-
-            restaurante.addItemCardapio(new ItemCardapio(nome, preco, categoria));
-        }
+        System.out.println("=================");
 
         restaurante.inicializarSistema();
+
+        System.out.println("==================");
 
         System.out.print("Digite o nome do cliente: ");
         String nomeCliente = input.next();
@@ -72,7 +70,11 @@ public class Programa {
             reserva.confirmar();
         } else {
             System.out.println("Desculpe, não há mesas disponíveis para esse número de pessoas.");
-            return;
+            System.out.println("Deseja tentar novamente? (s/n)");
+            char resposta = input.next().charAt(0);
+            if (resposta == 'n') {
+                System.out.println("Finalizando programa...");
+            }
         }
 
         cliente.fazerPedido(restaurante.getCardapio(), input);
