@@ -7,7 +7,6 @@ import com.diogomnx.domain.restaurante.Mesa;
 import com.diogomnx.domain.restaurante.Reserva;
 import com.diogomnx.domain.restaurante.Restaurante;
 import com.diogomnx.domain.restaurante.SistemaRestaurante;
-
 import java.util.Scanner;
 
 public class Programa {
@@ -81,12 +80,13 @@ public class Programa {
                 }
             }
 
-            cliente.fazerPedido(restaurante.getCardapio(), input);
             garcom.executarTarefa();
+
+            cliente.fazerPedido(restaurante.getCardapio(), input);
 
             System.out.println("\nEscolha uma forma de pagamento:");
             System.out.println("1. Dinheiro\n2. Cartão\n3. Pix");
-            System.out.println("(Digite o numero referente ao método de pagamento");
+            System.out.println("(Digite o numero referente ao método de pagamento)");
             int escolhaPagamento = input.nextInt();
 
             switch (escolhaPagamento) {
@@ -97,7 +97,29 @@ public class Programa {
             }
 
             mesaDisponivel.liberar();
+
+            System.out.println("==================");
+
             System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está agora disponível.");
+
+            for (int i = 0; i < 1; i++) {  // Aqui, você pode ajustar o número de clientes a serem registrados
+                System.out.print("Digite o nome do cliente: ");
+                nomeCliente = input.next();
+
+                Cliente novoCliente = new Cliente(nomeCliente);
+                restaurante.addCliente(novoCliente);  // Método para adicionar o cliente ao restaurante
+
+                System.out.println("Cliente " + nomeCliente + " registrado com sucesso.");
+
+                // Aqui, se quiser, você pode adicionar uma condição para continuar ou finalizar
+                System.out.println("Mais algum cliente? (s/n)");
+                char resposta = input.next().charAt(0);
+                if (resposta == 'n') {
+                    break;  // Sai do loop de registro
+                }
+            }
+
+            System.out.println("==============");
 
             System.out.println("Obrigado por visitar o Snoop Burguer e volte sempre!");
         }
