@@ -7,6 +7,7 @@ import com.diogomnx.domain.restaurante.Mesa;
 import com.diogomnx.domain.restaurante.Reserva;
 import com.diogomnx.domain.restaurante.Restaurante;
 import com.diogomnx.domain.restaurante.SistemaRestaurante;
+
 import java.util.Scanner;
 
 public class Programa {
@@ -37,6 +38,7 @@ public class Programa {
                 case 4 -> sistema.buscarMesaPorCapacidade(input);
                 case 5 -> sistema.adicionarItemCardapio(restaurante, input);
                 case 6 -> sistema.listarCardapio(restaurante);
+                case 7 -> sistema.adicionarFuncionario(input);
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -48,81 +50,71 @@ public class Programa {
 
         System.out.println("==================");
 
-        System.out.print("Digite o nome do cliente: ");
-        String nomeCliente = input.next();
+        boolean maisClientes = true;
+        while (maisClientes) {
+            System.out.print("Digite o nome do cliente: ");
+            String nomeCliente = input.next();
+            Cliente cliente = new Cliente(nomeCliente);
+            Garcom garcom = new Garcom("Pedro", "G01");
 
-        Cliente cliente = new Cliente(nomeCliente);
-        Garcom garcom = new Garcom("Pedro", "G01");
+            boolean continuar = true;
+            while (continuar) {
+                System.out.println("\nDigite a capacidade necessária para a mesa:");
+                int capacidadeNecessaria = input.nextInt();
+                Mesa mesaDisponivel = restaurante.buscarMesaDisponivel(capacidadeNecessaria);
 
-        boolean continuar = true;
-        while (continuar) {
-            System.out.println("\nDigite a capacidade necessária para a mesa:");
-            int capacidadeNecessaria = input.nextInt();
-            Mesa mesaDisponivel = restaurante.buscarMesaDisponivel(capacidadeNecessaria);
+                if (mesaDisponivel != null) {
+                    System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está disponível. Reservando...");
+                    System.out.print("Digite o horário da reserva: ");
+                    String horarioReserva = input.next();
 
-            if (mesaDisponivel != null) {
-                System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está disponível. Reservando...");
-                System.out.print("Digite o horário da reserva: ");
-                String horarioReserva = input.nextLine();
-                input.nextLine();
-
-                Reserva reserva = new Reserva(cliente, horarioReserva);
-                mesaDisponivel.reservar(reserva);
-                reserva.confirmar();
-                continuar = false;
-            } else {
-                System.out.println("Desculpe, não há mesas disponíveis para esse número de pessoas.");
-                System.out.println("Deseja tentar novamente? (s/n)");
-                char resposta = input.next().charAt(0);
-                if (resposta == 'n') {
-                    System.out.println("Finalizando programa.");
+                    Reserva reserva = new Reserva(cliente, horarioReserva);
+                    mesaDisponivel.reservar(reserva);
+                    reserva.confirmar();
                     continuar = false;
+                } else {
+                    System.out.println("Desculpe, não há mesas disponíveis para esse número de pessoas.");
+                    System.out.println("Deseja tentar novamente? (s/n)");
+                    char respostaReserva = input.next().charAt(0);
+                    if (respostaReserva == 'n') {
+                        System.out.println("Finalizando programa.");
+                        continuar = false;
+                    }
                 }
-            }
 
-            garcom.executarTarefa();
+                garcom.executarTarefa();
 
-            cliente.fazerPedido(restaurante.getCardapio(), input);
+                cliente.fazerPedido(restaurante.getCardapio(), input);
 
-            System.out.println("\nEscolha uma forma de pagamento:");
-            System.out.println("1. Dinheiro\n2. Cartão\n3. Pix");
-            System.out.println("(Digite o numero referente ao método de pagamento)");
-            int escolhaPagamento = input.nextInt();
+                System.out.println("================");
 
-            switch (escolhaPagamento) {
-                case 1 -> cliente.pagarComDinheiro(input);
-                case 2 -> cliente.pagarComCartao(input);
-                case 3 -> cliente.pagarComPix(input);
-                default -> System.out.println("Forma de pagamento inválida.");
-            }
+                System.out.println("\nEscolha uma forma de pagamento:");
+                System.out.println("1. Dinheiro\n2. Cartão\n3. Pix");
+                System.out.println("(Digite o numero referente ao método de pagamento)");
+                int escolhaPagamento = input.nextInt();
 
-            mesaDisponivel.liberar();
+                switch (escolhaPagamento) {
+                    case 1 -> cliente.pagarComDinheiro(input);
+                    case 2 -> cliente.pagarComCartao(input);
+                    case 3 -> cliente.pagarComPix(input);
+                    default -> System.out.println("Forma de pagamento inválida.");
+                }
 
-            System.out.println("==================");
-
-            System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está agora disponível.");
-
-            for (int i = 0; i < 1; i++) {
-                System.out.print("Digite o nome do cliente: ");
-                nomeCliente = input.next();
-
-                Cliente novoCliente = new Cliente(nomeCliente);
-                restaurante.addCliente(novoCliente);
-
-                System.out.println("Cliente " + nomeCliente + " registrado com sucesso.");
-
+                mesaDisponivel.liberar();
+                System.out.println("==================");
+                System.out.println("Mesa " + mesaDisponivel.getNumeroMesa() + " está agora disponível.");
 
                 System.out.println("Mais algum cliente? (s/n)");
-                char resposta = input.next().charAt(0);
-                if (resposta == 'n') {
-                    break;
+                char respostaCliente = input.next().charAt(0);
+                if (respostaCliente == 'n') {
+                    maisClientes = false;
                 }
             }
-
-            System.out.println("==============");
-
-            System.out.println("Obrigado por visitar o Snoop Burguer e volte sempre!");
         }
+
+        System.out.println("==============");
+
+        System.out.println("Obrigado por visitar o Snoop Burguer e volte sempre!");
     }
 }
 
