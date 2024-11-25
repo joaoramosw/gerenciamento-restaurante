@@ -73,7 +73,7 @@ public class Programa {
             System.out.println("Deseja tentar novamente? (s/n)");
             char resposta = input.next().charAt(0);
             if (resposta == 'n') {
-                System.out.println("Finalizando programa...");
+                System.out.println("Finalizando programa.");
             }
         }
 
