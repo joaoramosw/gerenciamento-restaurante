@@ -28,6 +28,10 @@ public class Restaurante {
         return cardapio;
     }
 
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
@@ -37,15 +41,15 @@ public class Restaurante {
     }
 
     public void addItemCardapio(ItemCardapio item) {
-        cardapio.addItem(item);
+        this.cardapio.addItem(item);
     }
 
     public void addMesa(Mesa mesa) {
-        mesas.add(mesa);
+        this.mesas.add(mesa);
     }
 
     public void addFuncionario(Funcionario funcionario) {
-        funcionarios.add(funcionario);
+        this.funcionarios.add(funcionario);
     }
 
     public void listarFuncionarios() {
