@@ -62,4 +62,8 @@ public class SistemaRestaurante {
             System.out.printf("%-20s R$%-10.2f %-15s\n", item.getNome(), item.getPreco(), item.getCategoria());
         }
     }
+
+    public void adicionarFuncionario(Scanner input) {
+
+    }
 }
